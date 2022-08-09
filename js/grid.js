@@ -77,7 +77,7 @@ export default class Grid extends PIXI.Container {
                 })
 
                 const text = new PIXI.Text("",
-                    new PIXI.TextStyle({fontFamily: "pixelFont"})
+                    new PIXI.TextStyle({fontFamily: "myFont"})
                 );
                 text.scale.set(1 / 50 * size)
                 text.anchor.set(0.5);

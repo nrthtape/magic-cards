@@ -25,5 +25,4 @@ export function addRect(config){
 
 export function addText(config){
 
-
 }

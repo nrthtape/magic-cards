@@ -122,14 +122,14 @@ export default class Grid extends PIXI.Container {
                     grid[i].children[1].alpha = 0;
                     gsap.fromTo(grid[i].children[0],
                         {
-                            x: this._size / 2,
-                            y: this._size / 2 + 10,
+                            x: this._size / 4,
+                            y: this._size / 2,
                             width: this._size / 2,
                             height: this._size / 2,
                         },
                         {
-                            x: this._size / 2,
-                            y: this._size / 2,
+                            x: this._size / 4,
+                            y: this._size / 4,
                             width: this._size / 2,
                             height: this._size / 2,
                             text: card[i],

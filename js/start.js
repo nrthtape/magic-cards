@@ -1,0 +1,26 @@
+import Grid from "./grid.js";
+import {cards} from "./cards.js";
+
+app.stage.on("loaded", ()=>{
+    initGame();
+})
+
+//This function will run when the image has loaded
+export function initGame() {
+    const grid = new Grid({
+        parent: app.stage,
+        cards: cards
+    });
+
+    app.stage.interactive = true;
+
+    app.stage.on("pointerdown", ()=>{
+        grid.renderCard(1)
+    })
+
+    app.ticker.add(gameLoop);
+}
+
+export function gameLoop(delta){
+    PIXI.tweenManager.update();
+}

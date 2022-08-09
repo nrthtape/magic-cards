@@ -7,16 +7,23 @@ app.stage.on("loaded", ()=>{
 
 //This function will run when the image has loaded
 export function initGame() {
-    const grid = new Grid({
+    let grid = new Grid({
         parent: app.stage,
         cards: cards
     });
 
     app.stage.interactive = true;
 
+    grid.renderCard(1)
+
     app.stage.on("pointerdown", ()=>{
-        grid.renderCard(1)
+        grid.transformGrid();
     })
+
+    // app.stage.on("pointerup", ()=>{
+    //     grid.remove();
+    //     // initGame();
+    // })
 
     app.ticker.add(gameLoop);
 }

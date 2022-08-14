@@ -33,6 +33,7 @@ class Application {
         return this.renderer.view;
     }
 
+
     resize() {
         let gameW = config.width,
             gameH = config.height

@@ -2,10 +2,10 @@ import {addRect} from "./resourses.js";
 import {config} from "./config.js";
 
 export default class Grid extends PIXI.Container {
-    _row = 4;
-    _col = 4;
-    _size = 50;
+    _row = 8;
+    _col = 8;
     _offset = 30;
+    _size = config.width / this._row - this._offset;
 
     constructor({parent, cards})
     {
@@ -23,7 +23,7 @@ export default class Grid extends PIXI.Container {
 
         this._screen = new PIXI.Container();
         this._screen.x = this.width / 2;
-        this._screen.y = this.height / 2 - 50;
+        this._screen.y = this.height / 2;
         this.addChild(this._screen);
 
         this._grid = this.addGrid();
@@ -39,10 +39,10 @@ export default class Grid extends PIXI.Container {
         })
 
         this.filters = [
-            new PIXI.filters.BulgePinchFilter({
-                radius: 300,
-                strength: 0.1,
-            })
+            // new PIXI.filters.BulgePinchFilter({
+            //     radius: 300,
+            //     strength: 0.1,
+            // })
         ];
 
         app.ticker.add(()=>{
@@ -60,10 +60,12 @@ export default class Grid extends PIXI.Container {
     addGrid(){
         const grid = [],
               card = [],
+            size = this._size,
               offset = this._offset,
-              size = this._size,
               row = this._row,
-              col = this._col
+              col = this._col,
+              w = this.width,
+              h = this.height
 
         for (let y = 0; y < col; y++){
             for (let x = 0; x < row; x++){
@@ -72,8 +74,8 @@ export default class Grid extends PIXI.Container {
 
                 const rect = addRect({
                     parent: cell,
-                    width: size,
-                    height: size,
+                    width: (w - offset) / row - offset,
+                    height: (w - offset) / col - offset,
                     color: 0xffffff,
                     alpha: 0
                 })
@@ -88,17 +90,19 @@ export default class Grid extends PIXI.Container {
                 text.style.fill = "white";
                 cell.addChild(text);
 
-                cell.x = x * (size + offset);
-                cell.y = y * (size + offset);
+                cell.x = x * ((w - offset) / row);
+                cell.y = y * ((h - offset) / col);
 
                 if (
-                    y > (col - this._col) / 2 - 1 &&
-                    y < col - (col - this._col) / 2 &&
-                    x > (row - this._row) / 2 - 1 &&
-                    x < row - (row - this._row) / 2
+                    y > (col - 4) / 2 - 1 &&
+                    y < col - (col - 4) / 2 &&
+                    x > (row - 4) / 2 - 1 &&
+                    x < row - (row - 4) / 2
                 ){
                     card.push(cell);
                 }
+
+                // card.push(cell);
 
                 grid.push(cell);
             }

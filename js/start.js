@@ -30,5 +30,5 @@ export function initGame() {
 }
 
 export function gameLoop(delta){
-    PIXI.tweenManager.update();
+    //
 }

@@ -14,10 +14,7 @@ export function initGame() {
 
     app.stage.interactive = true;
 
-    grid.renderCard(1);
-
     app.stage.on("pointerdown", ()=>{
-        grid.renderCard(1)
         // grid.transformGrid();
     })
 
